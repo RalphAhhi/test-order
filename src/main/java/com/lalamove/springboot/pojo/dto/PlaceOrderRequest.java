@@ -1,5 +1,6 @@
 package com.lalamove.springboot.pojo.dto;
 
+
 import java.util.List;
 
 /*{
@@ -9,25 +10,9 @@ import java.util.List;
 }*/
 public class PlaceOrderRequest {
 
-    private List<String> origin;
+    public List<Double> origin;
 
-    private List<String> destination;
-
-    public List<String> getOrigin() {
-        return origin;
-    }
-
-    public void setOrigin(List<String> origin) {
-        this.origin = origin;
-    }
-
-    public List<String> getDestination() {
-        return destination;
-    }
-
-    public void setDestination(List<String> destination) {
-        this.destination = destination;
-    }
+    public List<Double> destination;
 
     @Override
     public String toString() {

@@ -9,7 +9,7 @@ public class PlaceOrderResponse {
 
     private long id;
 
-    private long distance;
+    private String distance;
 
     private String status;
 
@@ -21,11 +21,11 @@ public class PlaceOrderResponse {
         this.id = id;
     }
 
-    public long getDistance() {
+    public String getDistance() {
         return distance;
     }
 
-    public void setDistance(long distance) {
+    public void setDistance(String distance) {
         this.distance = distance;
     }
 
