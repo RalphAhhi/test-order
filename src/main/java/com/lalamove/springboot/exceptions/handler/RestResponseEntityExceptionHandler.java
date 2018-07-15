@@ -3,7 +3,7 @@ package com.lalamove.springboot.exceptions.handler;
 import com.google.maps.errors.NotFoundException;
 import com.lalamove.springboot.exceptions.custom.InvalidOrderRequestException;
 import com.lalamove.springboot.exceptions.custom.OrderAlreadyBeenTakenException;
-import com.lalamove.springboot.pojo.dto.ErrorResponse;
+import com.lalamove.springboot.model.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

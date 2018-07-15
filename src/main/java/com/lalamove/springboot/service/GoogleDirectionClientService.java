@@ -6,7 +6,7 @@ import com.google.maps.errors.NotFoundException;
 import com.google.maps.model.DirectionsRoute;
 import com.google.maps.model.LatLng;
 import com.lalamove.springboot.application.OrderConfiguration;
-import com.lalamove.springboot.pojo.dto.PlaceOrderRequest;
+import com.lalamove.springboot.model.dto.PlaceOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

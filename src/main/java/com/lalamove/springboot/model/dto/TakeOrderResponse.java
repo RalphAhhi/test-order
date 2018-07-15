@@ -1,4 +1,4 @@
-package com.lalamove.springboot.pojo.dto;
+package com.lalamove.springboot.model.dto;
 
 public class TakeOrderResponse {
 

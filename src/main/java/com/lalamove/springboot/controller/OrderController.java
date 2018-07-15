@@ -1,10 +1,10 @@
 package com.lalamove.springboot.controller;
 
 import com.lalamove.springboot.exceptions.custom.InvalidOrderRequestException;
+import com.lalamove.springboot.model.dto.OrderListRequest;
 import com.lalamove.springboot.validation.OrderValidator;
-import com.lalamove.springboot.pojo.dto.PlaceOrderRequest;
-import com.lalamove.springboot.pojo.dto.PlaceOrderResponse;
-import com.lalamove.springboot.pojo.dto.TakeOrderRequest;
+import com.lalamove.springboot.model.dto.PlaceOrderRequest;
+import com.lalamove.springboot.model.dto.TakeOrderRequest;
 import com.lalamove.springboot.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,21 +32,29 @@ public class OrderController {
         if (!orderValidator.isValidOrderRequest(order)) {
            throw new InvalidOrderRequestException("INVALID_ORDER_REQUEST");
         }
-        PlaceOrderResponse placeOrderResponse = orderService.placeOrder(order);
-        return ResponseEntity.status(HttpStatus.OK).body(placeOrderResponse);
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.placeOrder(order));
     }
 
-    @PutMapping(value = "order/{id}")
-    public ResponseEntity takeOrder(@RequestBody TakeOrderRequest order)  {
+    @PutMapping(value = "/order/{id}")
+    public ResponseEntity takeOrder(@RequestBody TakeOrderRequest order, @PathVariable(value = "id")long id) throws Exception  {
         logger.info("Taking an order ",order);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        if (!orderValidator.isValidTakerOrderRequest(order)) {
+            throw new InvalidOrderRequestException("INVALID_ORDER_REQUEST");
+        }
+        order.id = id;
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.takeOrder(order));
     }
 
-    @GetMapping(value= "orders")
+    @GetMapping(value= "/orders")
     public ResponseEntity orderList(@RequestParam( value = "page", defaultValue = "0", required = false) int page,
-                                    @RequestParam(value = "limit", defaultValue = "10" ,required = false) int limit) {
-        logger.info("Retrieving  orders ");
-        return ResponseEntity.status(HttpStatus.OK).build();
+                                    @RequestParam(value = "limit", defaultValue = "10" ,required = false) int limit,
+                                    @RequestParam(value = "sort", defaultValue = "ASC" ,required = false) String sort) {
+        logger.info("Retrieving orders ");
+        OrderListRequest orderListRequest = new OrderListRequest();
+        orderListRequest.page = page;
+        orderListRequest.size = limit;
+        orderListRequest.sort = sort;
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrder(orderListRequest));
     }
 
 

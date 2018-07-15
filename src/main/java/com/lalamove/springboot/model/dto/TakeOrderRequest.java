@@ -1,8 +1,13 @@
-package com.lalamove.springboot.pojo.dto;
+package com.lalamove.springboot.model.dto;
+
+import javax.validation.constraints.NotNull;
 
 public class TakeOrderRequest {
 
+    @NotNull
     public String status;
+
+    public long id;
 
     @Override
     public String toString() {

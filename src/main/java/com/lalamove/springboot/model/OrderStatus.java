@@ -1,4 +1,4 @@
-package com.lalamove.springboot.pojo;
+package com.lalamove.springboot.model;
 
 public enum OrderStatus {
 
